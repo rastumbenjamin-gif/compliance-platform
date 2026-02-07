@@ -1557,7 +1557,6 @@ const CompliancePlatform = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-xl font-semibold text-gray-900">Compliance Platform</h1>
-              <p className="text-xs text-gray-500 mt-1">Jouler</p>
             </div>
             <div className="flex items-center gap-3">
               <select 
