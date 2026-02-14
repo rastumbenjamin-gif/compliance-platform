@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, Database, FileCheck, AlertCircle, CheckCircle, Download, Activity, AlertTriangle, GitBranch, Server, RefreshCw, Zap, BarChart3, Upload, FileText, Wrench, ArrowRight } from 'lucide-react';
+import { Building2, Database, FileCheck, AlertCircle, CheckCircle, Download, Activity, AlertTriangle, GitBranch, Server, RefreshCw, Zap, BarChart3, Upload, FileText, Wrench, ArrowRight, Cpu, Clock, Users, TrendingDown, Leaf, DollarSign, Gauge } from 'lucide-react';
 
 const CompliancePlatform = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -153,6 +153,37 @@ const CompliancePlatform = () => {
       regulation: 'EU Regulation 2024/1364 Annex III(d)',
       description: 'Total renewable energy consumption ratio'
     },
+  ];
+
+  const gpuFleet = [
+    { facility: 'Oslo DC1', gpuType: 'NVIDIA H100 SXM', count: 512, utilization: 94, powerDraw: 3412, maxPower: 3584, tempAvg: 68 },
+    { facility: 'Stockholm DC1', gpuType: 'NVIDIA H100 SXM', count: 1024, gpuTypeSecondary: 'NVIDIA A100 80GB', countSecondary: 256, utilization: 89, powerDraw: 6248, maxPower: 7372, tempAvg: 71 },
+    { facility: 'Copenhagen DC1', gpuType: 'NVIDIA A100 80GB', count: 384, utilization: 78, powerDraw: 1843, maxPower: 2304, tempAvg: 65 },
+  ];
+
+  const trainingJobs = [
+    { id: 'job-001', name: 'LLaMA-3.2-70B Fine-tune', customer: 'NeuralTech AI', facility: 'Stockholm DC1', gpus: 128, gpuType: 'H100', status: 'running', progress: 67, energyKwh: 4823, durationHrs: 18.4, estimatedCost: 1687, carbonKg: 1013, batchSize: 2048, powerLimit: '90%', zeusOptimized: true, savingsPercent: 23 },
+    { id: 'job-002', name: 'Whisper-v4 Training', customer: 'VoiceScale Inc', facility: 'Oslo DC1', gpus: 64, gpuType: 'H100', status: 'running', progress: 34, energyKwh: 1247, durationHrs: 6.2, estimatedCost: 436, carbonKg: 262, batchSize: 512, powerLimit: '85%', zeusOptimized: true, savingsPercent: 31 },
+    { id: 'job-003', name: 'Stable Diffusion XL v3', customer: 'GenArt Studios', facility: 'Stockholm DC1', gpus: 256, gpuType: 'H100', status: 'running', progress: 89, energyKwh: 12480, durationHrs: 52.1, estimatedCost: 4368, carbonKg: 2621, batchSize: 4096, powerLimit: '95%', zeusOptimized: false, savingsPercent: 0 },
+    { id: 'job-004', name: 'CodeGen-15B Pretraining', customer: 'DevAssist Corp', facility: 'Oslo DC1', gpus: 32, gpuType: 'H100', status: 'running', progress: 12, energyKwh: 389, durationHrs: 2.8, estimatedCost: 136, carbonKg: 82, batchSize: 1024, powerLimit: '80%', zeusOptimized: true, savingsPercent: 28 },
+    { id: 'job-005', name: 'Climate Model v2', customer: 'EarthSim Research', facility: 'Copenhagen DC1', gpus: 96, gpuType: 'A100', status: 'running', progress: 56, energyKwh: 2156, durationHrs: 14.7, estimatedCost: 755, carbonKg: 453, batchSize: 768, powerLimit: '85%', zeusOptimized: true, savingsPercent: 19 },
+    { id: 'job-006', name: 'Protein Fold Prediction', customer: 'BioCompute Ltd', facility: 'Copenhagen DC1', gpus: 48, gpuType: 'A100', status: 'queued', progress: 0, energyKwh: 0, durationHrs: 0, estimatedCost: 0, carbonKg: 0, batchSize: 256, powerLimit: '90%', zeusOptimized: true, savingsPercent: 0 },
+  ];
+
+  const customerAttribution = [
+    { name: 'NeuralTech AI', gpuHours: 2355, energyKwh: 4823, carbonKg: 1013, cost: 1687, jobs: 1, facility: 'Stockholm DC1' },
+    { name: 'GenArt Studios', gpuHours: 13338, energyKwh: 12480, carbonKg: 2621, cost: 4368, jobs: 1, facility: 'Stockholm DC1' },
+    { name: 'VoiceScale Inc', gpuHours: 397, energyKwh: 1247, carbonKg: 262, cost: 436, jobs: 1, facility: 'Oslo DC1' },
+    { name: 'EarthSim Research', gpuHours: 1411, energyKwh: 2156, carbonKg: 453, cost: 755, jobs: 1, facility: 'Copenhagen DC1' },
+    { name: 'DevAssist Corp', gpuHours: 90, energyKwh: 389, carbonKg: 82, cost: 136, jobs: 1, facility: 'Oslo DC1' },
+    { name: 'BioCompute Ltd', gpuHours: 0, energyKwh: 0, carbonKg: 0, cost: 0, jobs: 1, facility: 'Copenhagen DC1' },
+  ];
+
+  const zeusOptimizations = [
+    { job: 'LLaMA-3.2-70B Fine-tune', type: 'Batch Size', original: '1024', optimized: '2048', energySaved: '23%', method: 'Zeus BatchSizeOptimizer — JKNL cost model' },
+    { job: 'Whisper-v4 Training', type: 'Power Limit', original: '700W', optimized: '595W (85%)', energySaved: '31%', method: 'Zeus GlobalPowerLimitOptimizer — Pareto frontier' },
+    { job: 'CodeGen-15B Pretraining', type: 'Power Limit + Batch Size', original: '700W / BS 512', optimized: '560W / BS 1024', energySaved: '28%', method: 'Zeus combined optimization — Perseus pipeline frequency' },
+    { job: 'Climate Model v2', type: 'Pipeline Frequency', original: 'Default freq', optimized: 'Perseus-optimized', energySaved: '19%', method: 'Zeus PipelineFrequencyOptimizer — per-stage tuning' },
   ];
 
   useEffect(() => {
@@ -1548,6 +1579,383 @@ const CompliancePlatform = () => {
     );
   };
 
+  const GPUWorkloadView = () => {
+    const totalGpus = gpuFleet.reduce((sum, f) => sum + f.count + (f.countSecondary || 0), 0);
+    const totalGpuPower = gpuFleet.reduce((sum, f) => sum + f.powerDraw, 0);
+    const totalFacilityPower = facilities.reduce((sum, f) => sum + parseFloat(f.capacity) * 1000, 0);
+    const gpuEnergyPercent = ((totalGpuPower / totalFacilityPower) * 100).toFixed(1);
+    const runningJobs = trainingJobs.filter(j => j.status === 'running');
+    const totalEnergyKwh = runningJobs.reduce((sum, j) => sum + j.energyKwh, 0);
+    const totalCarbonKg = runningJobs.reduce((sum, j) => sum + j.carbonKg, 0);
+    const optimizedJobs = runningJobs.filter(j => j.zeusOptimized);
+    const avgSavings = optimizedJobs.length > 0 ? (optimizedJobs.reduce((sum, j) => sum + j.savingsPercent, 0) / optimizedJobs.length).toFixed(0) : 0;
+
+    return (
+      <div className="space-y-4">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-5 gap-4">
+          <div className="bg-white border border-gray-200 rounded p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <Cpu className="w-4 h-4 text-gray-400" />
+              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">GPU Fleet</div>
+            </div>
+            <div className="text-3xl font-light text-gray-900">{totalGpus.toLocaleString()}</div>
+            <div className="text-xs text-gray-500 mt-1">Across {gpuFleet.length} facilities</div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <Zap className="w-4 h-4 text-gray-400" />
+              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">GPU Power Draw</div>
+            </div>
+            <div className="text-3xl font-light text-gray-900">{(totalGpuPower / 1000).toFixed(1)} MW</div>
+            <div className="text-xs text-gray-500 mt-1">{gpuEnergyPercent}% of facility load</div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <Activity className="w-4 h-4 text-gray-400" />
+              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Active Jobs</div>
+            </div>
+            <div className="text-3xl font-light text-gray-900">{runningJobs.length}</div>
+            <div className="text-xs text-gray-500 mt-1">{totalEnergyKwh.toLocaleString()} kWh consumed</div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <Leaf className="w-4 h-4 text-gray-400" />
+              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Carbon Footprint</div>
+            </div>
+            <div className="text-3xl font-light text-gray-900">{(totalCarbonKg / 1000).toFixed(1)}t</div>
+            <div className="text-xs text-gray-500 mt-1">CO₂e from active jobs</div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingDown className="w-4 h-4 text-gray-400" />
+              <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">Zeus Savings</div>
+            </div>
+            <div className="text-3xl font-light text-gray-900">{avgSavings}%</div>
+            <div className="text-xs text-gray-500 mt-1">Avg energy reduction</div>
+          </div>
+        </div>
+
+        {/* GPU Fleet by Facility */}
+        <div className="bg-white border border-gray-200 rounded">
+          <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">GPU Fleet Status</h2>
+            <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-pulse"></div>
+              Zeus PowerMonitor Active
+            </div>
+          </div>
+          <div className="divide-y divide-gray-100">
+            {gpuFleet.map((fleet, idx) => (
+              <div key={idx} className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-base font-medium text-gray-900">{fleet.facility}</h3>
+                    <p className="text-sm text-gray-500">
+                      {fleet.count}× {fleet.gpuType}
+                      {fleet.gpuTypeSecondary && ` + ${fleet.countSecondary}× ${fleet.gpuTypeSecondary}`}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-light text-gray-900">{fleet.utilization}%</div>
+                    <div className="text-xs text-gray-500">Utilization</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">Power Draw</div>
+                    <div className="font-medium text-gray-900">{(fleet.powerDraw / 1000).toFixed(1)} MW</div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5 mt-2">
+                      <div className="bg-gray-700 h-1.5 rounded-full" style={{ width: `${(fleet.powerDraw / fleet.maxPower) * 100}%` }}></div>
+                    </div>
+                    <div className="text-xs text-gray-400 mt-1">{((fleet.powerDraw / fleet.maxPower) * 100).toFixed(0)}% of {(fleet.maxPower / 1000).toFixed(1)} MW capacity</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">GPU Temp (Avg)</div>
+                    <div className="font-medium text-gray-900">{fleet.tempAvg}°C</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">Energy (24h)</div>
+                    <div className="font-medium text-gray-900">{(fleet.powerDraw * 24).toLocaleString()} kWh</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">GPU Energy / Facility Total</div>
+                    <div className="font-medium text-gray-900">{((fleet.powerDraw / (parseFloat(facilities.find(f => f.name === fleet.facility)?.capacity || 5) * 1000)) * 100).toFixed(0)}%</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Active Training Jobs */}
+        <div className="bg-white border border-gray-200 rounded">
+          <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Active Training Jobs</h2>
+            <div className="text-xs text-gray-500">Measured by Zeus ZeusMonitor</div>
+          </div>
+          <div className="divide-y divide-gray-100">
+            {trainingJobs.map(job => (
+              <div key={job.id} className="p-5 hover:bg-gray-50 transition-colors">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-1">
+                      <h3 className="text-sm font-medium text-gray-900">{job.name}</h3>
+                      {job.status === 'running' ? (
+                        <span className="flex items-center gap-1 text-xs text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-pulse"></div>
+                          Running
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-1 text-xs text-gray-400">
+                          <Clock className="w-3 h-3" />
+                          Queued
+                        </span>
+                      )}
+                      {job.zeusOptimized && (
+                        <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-medium">
+                          Zeus Optimized −{job.savingsPercent}%
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      {job.customer} • {job.facility} • {job.gpus}× {job.gpuType}
+                    </p>
+                  </div>
+                  {job.status === 'running' && (
+                    <div className="text-right ml-4">
+                      <div className="text-lg font-light text-gray-900">{job.energyKwh.toLocaleString()} kWh</div>
+                      <div className="text-xs text-gray-500">{job.carbonKg} kg CO₂e</div>
+                    </div>
+                  )}
+                </div>
+
+                {job.status === 'running' && (
+                  <>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex-1">
+                        <div className="w-full bg-gray-100 rounded-full h-2">
+                          <div className="bg-gray-700 h-2 rounded-full transition-all" style={{ width: `${job.progress}%` }}></div>
+                        </div>
+                      </div>
+                      <span className="text-xs font-mono text-gray-600 w-10 text-right">{job.progress}%</span>
+                    </div>
+
+                    <div className="grid grid-cols-5 gap-4 text-xs">
+                      <div>
+                        <div className="text-gray-500 mb-0.5">Duration</div>
+                        <div className="font-mono text-gray-700">{job.durationHrs}h</div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500 mb-0.5">Batch Size</div>
+                        <div className="font-mono text-gray-700">{job.batchSize}</div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500 mb-0.5">Power Limit</div>
+                        <div className="font-mono text-gray-700">{job.powerLimit}</div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500 mb-0.5">Energy Cost</div>
+                        <div className="font-mono text-gray-700">€{job.estimatedCost.toLocaleString()}</div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500 mb-0.5">Efficiency</div>
+                        <div className="font-mono text-gray-700">{(job.energyKwh / job.durationHrs).toFixed(0)} kWh/h</div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* GPU Energy → Facility Compliance Bridge */}
+        <div className="bg-white border border-gray-200 rounded">
+          <div className="px-6 py-4 border-b border-gray-100">
+            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">GPU Energy → Facility Compliance Bridge</h2>
+            <p className="text-xs text-gray-500 mt-1">How Zeus GPU-level data feeds into EU compliance metrics</p>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-3 gap-6">
+              {/* Left: Zeus GPU Data */}
+              <div className="space-y-3">
+                <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-3 flex items-center gap-2">
+                  <Cpu className="w-3.5 h-3.5" />
+                  Layer 1: Zeus GPU Measurement
+                </div>
+                <div className="border border-gray-200 rounded p-3 bg-gray-50">
+                  <div className="text-xs text-gray-500 mb-1">Total GPU Energy (24h)</div>
+                  <div className="text-lg font-light text-gray-900">{((totalGpuPower * 24) / 1000).toFixed(1)} MWh</div>
+                  <div className="text-xs text-gray-400 font-mono mt-1">zeus.ZeusMonitor.end_window()</div>
+                </div>
+                <div className="border border-gray-200 rounded p-3 bg-gray-50">
+                  <div className="text-xs text-gray-500 mb-1">GPU Power Draw</div>
+                  <div className="text-lg font-light text-gray-900">{(totalGpuPower / 1000).toFixed(1)} MW</div>
+                  <div className="text-xs text-gray-400 font-mono mt-1">zeus.PowerMonitor.get_power()</div>
+                </div>
+                <div className="border border-gray-200 rounded p-3 bg-gray-50">
+                  <div className="text-xs text-gray-500 mb-1">Zeus Optimized Savings</div>
+                  <div className="text-lg font-light text-gray-900">{avgSavings}% avg</div>
+                  <div className="text-xs text-gray-400 font-mono mt-1">zeus.BatchSizeOptimizer + PowerLimit</div>
+                </div>
+              </div>
+
+              {/* Middle: Bridge Arrows */}
+              <div className="flex flex-col items-center justify-center space-y-4">
+                <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-3 flex items-center gap-2">
+                  <ArrowRight className="w-3.5 h-3.5" />
+                  Integration Layer
+                </div>
+                <div className="w-full border border-gray-300 rounded p-3 bg-white text-center">
+                  <div className="text-xs text-gray-600 mb-2">GPU Load = E<sub>IT</sub> primary component</div>
+                  <div className="font-mono text-sm text-gray-900">E<sub>GPU</sub> / E<sub>IT</sub> = {gpuEnergyPercent}%</div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-gray-400 rotate-90" />
+                <div className="w-full border border-gray-300 rounded p-3 bg-white text-center">
+                  <div className="text-xs text-gray-600 mb-2">Cooling demand correlated to GPU thermal output</div>
+                  <div className="font-mono text-sm text-gray-900">R² = 0.94</div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-gray-400 rotate-90" />
+                <div className="w-full border border-gray-300 rounded p-3 bg-white text-center">
+                  <div className="text-xs text-gray-600 mb-2">Carbon intensity from grid × GPU energy</div>
+                  <div className="font-mono text-sm text-gray-900">0.21 kgCO₂/kWh</div>
+                </div>
+              </div>
+
+              {/* Right: EU Compliance Metrics */}
+              <div className="space-y-3">
+                <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-3 flex items-center gap-2">
+                  <FileCheck className="w-3.5 h-3.5" />
+                  Layer 2: EU Compliance Output
+                </div>
+                <div className="border border-gray-200 rounded p-3 bg-gray-50">
+                  <div className="text-xs text-gray-500 mb-1">PUE (GPU-aware)</div>
+                  <div className="text-lg font-light text-gray-900">{getAveragePUE()}</div>
+                  <div className="text-xs text-gray-400 mt-1">EU Reg 2024/1364 Annex III(a)</div>
+                </div>
+                <div className="border border-gray-200 rounded p-3 bg-gray-50">
+                  <div className="text-xs text-gray-500 mb-1">Carbon per Training Job</div>
+                  <div className="text-lg font-light text-gray-900">{(totalCarbonKg / runningJobs.length).toFixed(0)} kg avg</div>
+                  <div className="text-xs text-gray-400 mt-1">GHG Protocol Scope 2</div>
+                </div>
+                <div className="border border-gray-200 rounded p-3 bg-gray-50">
+                  <div className="text-xs text-gray-500 mb-1">Customer Carbon Reports</div>
+                  <div className="text-lg font-light text-gray-900">{customerAttribution.length} customers</div>
+                  <div className="text-xs text-gray-400 mt-1">CSRD-ready attribution</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Zeus Optimization Details */}
+        <div className="bg-white border border-gray-200 rounded">
+          <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+            <div>
+              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Zeus Optimization Engine</h2>
+              <p className="text-xs text-gray-500 mt-1">Active optimizations reducing energy consumption per training job</p>
+            </div>
+            <div className="text-right">
+              <div className="text-lg font-light text-gray-900">{optimizedJobs.length}/{runningJobs.length}</div>
+              <div className="text-xs text-gray-500">Jobs optimized</div>
+            </div>
+          </div>
+          <div className="divide-y divide-gray-100">
+            {zeusOptimizations.map((opt, idx) => (
+              <div key={idx} className="p-5">
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">{opt.job}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{opt.type}</div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-sm font-medium bg-gray-100 text-gray-800 px-3 py-1 rounded">
+                      −{opt.energySaved} energy
+                    </span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-4 text-xs mt-3">
+                  <div>
+                    <div className="text-gray-500 mb-0.5">Original Config</div>
+                    <div className="font-mono text-gray-700">{opt.original}</div>
+                  </div>
+                  <div>
+                    <div className="text-gray-500 mb-0.5">Optimized Config</div>
+                    <div className="font-mono text-gray-900 font-medium">{opt.optimized}</div>
+                  </div>
+                  <div>
+                    <div className="text-gray-500 mb-0.5">Method</div>
+                    <div className="text-gray-600">{opt.method}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Customer Carbon Attribution */}
+        <div className="bg-white border border-gray-200 rounded">
+          <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+            <div>
+              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Customer Carbon Attribution</h2>
+              <p className="text-xs text-gray-500 mt-1">Per-customer energy and carbon accounting from Zeus measurements</p>
+            </div>
+            <div className="text-xs text-gray-500">CSRD-ready • GHG Protocol aligned</div>
+          </div>
+          <div className="p-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="text-left py-3 px-2 font-medium text-gray-900">Customer</th>
+                  <th className="text-left py-3 px-2 font-medium text-gray-900">Facility</th>
+                  <th className="text-right py-3 px-2 font-medium text-gray-900">GPU Hours</th>
+                  <th className="text-right py-3 px-2 font-medium text-gray-900">Energy (kWh)</th>
+                  <th className="text-right py-3 px-2 font-medium text-gray-900">Carbon (kg CO₂e)</th>
+                  <th className="text-right py-3 px-2 font-medium text-gray-900">Cost (€)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {customerAttribution.filter(c => c.energyKwh > 0).map((customer, idx) => (
+                  <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                    <td className="py-3 px-2">
+                      <div className="font-medium text-gray-900">{customer.name}</div>
+                      <div className="text-xs text-gray-500">{customer.jobs} active job{customer.jobs > 1 ? 's' : ''}</div>
+                    </td>
+                    <td className="py-3 px-2 text-gray-600">{customer.facility}</td>
+                    <td className="py-3 px-2 text-right font-mono text-gray-700">{customer.gpuHours.toLocaleString()}</td>
+                    <td className="py-3 px-2 text-right font-mono text-gray-700">{customer.energyKwh.toLocaleString()}</td>
+                    <td className="py-3 px-2 text-right font-mono text-gray-700">{customer.carbonKg.toLocaleString()}</td>
+                    <td className="py-3 px-2 text-right font-mono text-gray-700">€{customer.cost.toLocaleString()}</td>
+                  </tr>
+                ))}
+                <tr className="bg-gray-50 font-medium">
+                  <td className="py-3 px-2 text-gray-900" colSpan={2}>Total (Active)</td>
+                  <td className="py-3 px-2 text-right font-mono text-gray-900">
+                    {customerAttribution.filter(c => c.energyKwh > 0).reduce((s, c) => s + c.gpuHours, 0).toLocaleString()}
+                  </td>
+                  <td className="py-3 px-2 text-right font-mono text-gray-900">
+                    {customerAttribution.filter(c => c.energyKwh > 0).reduce((s, c) => s + c.energyKwh, 0).toLocaleString()}
+                  </td>
+                  <td className="py-3 px-2 text-right font-mono text-gray-900">
+                    {customerAttribution.filter(c => c.energyKwh > 0).reduce((s, c) => s + c.carbonKg, 0).toLocaleString()}
+                  </td>
+                  <td className="py-3 px-2 text-right font-mono text-gray-900">
+                    €{customerAttribution.filter(c => c.energyKwh > 0).reduce((s, c) => s + c.cost, 0).toLocaleString()}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {showUploadFlow && <UploadFlow />}
@@ -1584,6 +1992,16 @@ const CompliancePlatform = () => {
               Dashboard
             </button>
             <button
+              onClick={() => setActiveTab('gpu-workload')}
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
+                activeTab === 'gpu-workload'
+                  ? 'text-gray-900 border-b-2 border-gray-900'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              GPU Workload
+            </button>
+            <button
               onClick={() => setActiveTab('compliance')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'compliance'
@@ -1609,6 +2027,7 @@ const CompliancePlatform = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-6">
         {activeTab === 'dashboard' && <DashboardView />}
+        {activeTab === 'gpu-workload' && <GPUWorkloadView />}
         {activeTab === 'compliance' && <ComplianceView />}
         {activeTab === 'historical' && <HistoricalView />}
       </div>
@@ -1627,6 +2046,10 @@ const CompliancePlatform = () => {
             <div className="flex items-center gap-2">
               <GitBranch className="w-3 h-3" />
               <span>847 validation rules</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Cpu className="w-3 h-3" />
+              <span>Zeus: 2,176 GPUs monitored</span>
             </div>
             <div className="flex items-center gap-2">
               <Activity className="w-3 h-3" />
