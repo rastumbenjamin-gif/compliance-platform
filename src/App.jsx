@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Building2, Database, FileCheck, AlertCircle, CheckCircle, Download, Activity, AlertTriangle, GitBranch, Server, RefreshCw, Zap, BarChart3, Upload, FileText, Wrench, ArrowRight, Cpu, Clock, Users, TrendingDown, Leaf, DollarSign, Gauge } from 'lucide-react';
+import EEDAudit from './EEDAudit';
 
 const CompliancePlatform = () => {
+  const [appScreen, setAppScreen] = useState('platform');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedFacility, setSelectedFacility] = useState('all');
   const [showTechnicalDetails, setShowTechnicalDetails] = useState(false);
@@ -1956,6 +1958,10 @@ const CompliancePlatform = () => {
     );
   };
 
+  if (appScreen === 'audit') {
+    return <EEDAudit onBack={() => setAppScreen('platform')} />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {showUploadFlow && <UploadFlow />}
@@ -1967,7 +1973,14 @@ const CompliancePlatform = () => {
               <h1 className="text-xl font-semibold text-gray-900">Compliance Platform</h1>
             </div>
             <div className="flex items-center gap-3">
-              <select 
+              <button
+                onClick={() => setAppScreen('audit')}
+                className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition-colors"
+              >
+                <FileCheck className="w-4 h-4" />
+                EED Audit
+              </button>
+              <select
                 value={selectedFacility}
                 onChange={(e) => setSelectedFacility(e.target.value)}
                 className="px-3 py-2 border border-gray-200 rounded text-sm text-gray-700 focus:outline-none focus:border-gray-400"
