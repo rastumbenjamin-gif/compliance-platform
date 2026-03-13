@@ -210,7 +210,7 @@ export default function LandingPage({ onDemo, onAudit }) {
             <div className="hc-studio-eyebrow">VENTURE STUDIO</div>
             <div className="hc-studio-heading">Built by Respire</div>
             <p className="hc-studio-body">
-              HeatCert is a product of <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-link">Respire</a> — a venture studio building software at the intersection of climate compliance and infrastructure efficiency. We develop focused tools for operators, developers, and asset managers navigating the transition to sustainable infrastructure.
+              HeatCert is a product of <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-link">Respire</a> — a venture studio focused on accelerating the climate transition. Respire builds purpose-driven software ventures that help operators, developers, and asset managers meet the demands of a decarbonising economy.
             </p>
             <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-cta">
               Visit Respire →
@@ -219,7 +219,7 @@ export default function LandingPage({ onDemo, onAudit }) {
           <div className="hc-studio-right">
             <div className="hc-studio-fact">
               <div className="hc-studio-fact-label">FOCUS</div>
-              <div className="hc-studio-fact-value">Climate compliance &amp; infrastructure efficiency</div>
+              <div className="hc-studio-fact-value">Accelerating the climate transition</div>
             </div>
             <div className="hc-studio-fact">
               <div className="hc-studio-fact-label">APPROACH</div>
