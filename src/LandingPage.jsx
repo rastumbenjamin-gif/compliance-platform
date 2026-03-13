@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LandingPage({ onDemo, onAudit }) {
+export default function LandingPage({ onRequestAccess, onDemo, onAudit }) {
   return (
     <div style={{ position: 'relative', zIndex: 1 }}>
 
@@ -22,7 +22,7 @@ export default function LandingPage({ onDemo, onAudit }) {
             <button className="hc-btn-ghost" onClick={onAudit} style={{ padding: '9px 20px', fontSize: 13 }}>
               EED Audit
             </button>
-            <button className="hc-btn-primary" onClick={onDemo} style={{ padding: '10px 22px', fontSize: 13 }}>
+            <button className="hc-btn-primary" onClick={onRequestAccess} style={{ padding: '10px 22px', fontSize: 13 }}>
               Request Access →
             </button>
           </div>
@@ -39,7 +39,7 @@ export default function LandingPage({ onDemo, onAudit }) {
           Structured data collection, automated validation, and submission-ready reporting — covering all 24 EU EED KPIs.
         </p>
         <div className="hc-hero-actions">
-          <button className="hc-btn-primary" onClick={onDemo} style={{ fontSize: 16, padding: '16px 36px' }}>
+          <button className="hc-btn-primary" onClick={onRequestAccess} style={{ fontSize: 16, padding: '16px 36px' }}>
             Request Access →
           </button>
           <button className="hc-btn-ghost" onClick={onAudit} style={{ fontSize: 16, padding: '15px 30px' }}>
@@ -129,13 +129,13 @@ export default function LandingPage({ onDemo, onAudit }) {
         <div className="hc-section-eyebrow">TOOLS</div>
         <h2 className="hc-section-title">Two ways in.</h2>
         <div className="hc-3col-grid" style={{ gridTemplateColumns: '1fr 1fr', maxWidth: 800 }}>
-          <div className="hc-feature-card" style={{ cursor: 'pointer' }} onClick={onDemo}>
+          <div className="hc-feature-card" style={{ cursor: 'pointer' }} onClick={onRequestAccess}>
             <div className="hc-feature-card-tag">COMPLIANCE DASHBOARD</div>
             <div className="hc-feature-card-title">Live compliance monitoring</div>
             <div className="hc-feature-card-body" style={{ marginBottom: 20 }}>
               Real-time KPI calculation, EU threshold validation, gap flagging, and historical trends across your facility portfolio.
             </div>
-            <button className="hc-btn-primary" onClick={onDemo} style={{ fontSize: 13, padding: '10px 20px' }}>
+            <button className="hc-btn-primary" onClick={onRequestAccess} style={{ fontSize: 13, padding: '10px 20px' }}>
               Request Access →
             </button>
           </div>
@@ -158,7 +158,7 @@ export default function LandingPage({ onDemo, onAudit }) {
           Ready for the <em>next deadline</em>?
         </div>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="hc-btn-primary" onClick={onDemo} style={{ fontSize: 16, padding: '16px 36px' }}>
+          <button className="hc-btn-primary" onClick={onRequestAccess} style={{ fontSize: 16, padding: '16px 36px' }}>
             Request Access →
           </button>
           <button className="hc-btn-ghost" onClick={onAudit} style={{ fontSize: 16, padding: '15px 30px' }}>

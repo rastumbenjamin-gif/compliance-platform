@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Building2, Database, FileCheck, AlertCircle, CheckCircle, Download, Activity, AlertTriangle, GitBranch, Server, RefreshCw, Zap, BarChart3, Upload, FileText, Wrench, ArrowRight, Cpu, Clock, Users, TrendingDown, Leaf, DollarSign, Gauge } from 'lucide-react';
 import EEDAudit from './EEDAudit';
 import LandingPage from './LandingPage';
+import RequestAccessForm from './RequestAccessForm';
 import './heatcert.css';
 
 const CompliancePlatform = () => {
@@ -1972,9 +1973,15 @@ const CompliancePlatform = () => {
       {/* ── LANDING ── */}
       {appScreen === 'home' && (
         <LandingPage
+          onRequestAccess={() => setAppScreen('request-access')}
           onDemo={() => setAppScreen('demo')}
           onAudit={() => setAppScreen('eed-audit')}
         />
+      )}
+
+      {/* ── REQUEST ACCESS FORM ── */}
+      {appScreen === 'request-access' && (
+        <RequestAccessForm onBack={() => setAppScreen('home')} />
       )}
 
       {/* ── DEMO DASHBOARD ── */}
