@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Building2, Database, FileCheck, AlertCircle, CheckCircle, Download, Activity, AlertTriangle, GitBranch, Server, RefreshCw, Zap, BarChart3, Upload, FileText, Wrench, ArrowRight, Cpu, Clock, Users, TrendingDown, Leaf, DollarSign, Gauge } from 'lucide-react';
 import EEDAudit from './EEDAudit';
+import LandingPage from './LandingPage';
 import './heatcert.css';
 
 const CompliancePlatform = () => {
+  const [appScreen, setAppScreen] = useState('home');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedFacility, setSelectedFacility] = useState('all');
   const [showTechnicalDetails, setShowTechnicalDetails] = useState(false);
@@ -1960,133 +1962,146 @@ const CompliancePlatform = () => {
 
   return (
     <div className="heatcert-app min-h-screen bg-gray-50">
-      {/* Animated background */}
+      {/* Animated background — always visible */}
       <div className="hc-bg" aria-hidden="true">
         <div className="hc-bg-orb hc-bg-orb-1" />
         <div className="hc-bg-orb hc-bg-orb-2" />
         <div className="hc-bg-orb hc-bg-orb-3" />
       </div>
 
-      {showUploadFlow && <UploadFlow />}
-
-      <div className="hc-header bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="hc-logo">
-              <div className="hc-logo-icon">⬡</div>
-              <span className="hc-logo-wordmark">HeatCert</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <select
-                value={selectedFacility}
-                onChange={(e) => setSelectedFacility(e.target.value)}
-                className="px-3 py-2 border border-gray-200 rounded text-sm text-gray-700 focus:outline-none focus:border-gray-400"
-              >
-                <option value="all">All Facilities</option>
-                {facilities.map(f => (
-                  <option key={f.id} value={f.id}>{f.name}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="hc-tabs flex gap-1 border-b border-gray-200">
-            <button
-              onClick={() => setActiveTab('dashboard')}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === 'dashboard'
-                  ? 'hc-tab-active'
-                  : 'hc-tab-inactive'
-              }`}
-            >
-              Dashboard
-            </button>
-            <button
-              onClick={() => setActiveTab('gpu-workload')}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === 'gpu-workload'
-                  ? 'hc-tab-active'
-                  : 'hc-tab-inactive'
-              }`}
-            >
-              GPU Workload
-            </button>
-            <button
-              onClick={() => setActiveTab('compliance')}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === 'compliance'
-                  ? 'hc-tab-active'
-                  : 'hc-tab-inactive'
-              }`}
-            >
-              Compliance
-            </button>
-            <button
-              onClick={() => setActiveTab('historical')}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === 'historical'
-                  ? 'hc-tab-active'
-                  : 'hc-tab-inactive'
-              }`}
-            >
-              Historical
-            </button>
-            <button
-              onClick={() => setActiveTab('eed-audit')}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === 'eed-audit'
-                  ? 'hc-tab-active'
-                  : 'hc-tab-inactive'
-              }`}
-            >
-              EED Audit
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {activeTab === 'eed-audit' ? (
-        <div key={activeTab} className="hc-tab-content">
-          <EEDAudit />
-        </div>
-      ) : (
-        <div key={activeTab} className="max-w-7xl mx-auto px-6 py-6 hc-tab-content">
-          {activeTab === 'dashboard' && <DashboardView />}
-          {activeTab === 'gpu-workload' && <GPUWorkloadView />}
-          {activeTab === 'compliance' && <ComplianceView />}
-          {activeTab === 'historical' && <HistoricalView />}
-        </div>
+      {/* ── LANDING ── */}
+      {appScreen === 'home' && (
+        <LandingPage
+          onDemo={() => setAppScreen('demo')}
+          onAudit={() => setAppScreen('eed-audit')}
+        />
       )}
 
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-gray-400 py-2 px-6 text-xs border-t border-gray-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-pulse"></div>
-              <span>BMS Sync Active</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Server className="w-3 h-3" />
-              <span>3 Integrations</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <GitBranch className="w-3 h-3" />
-              <span>847 validation rules</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Cpu className="w-3 h-3" />
-              <span>Zeus: 2,176 GPUs monitored</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Activity className="w-3 h-3" />
-              <span>Processing: 105K data points/year</span>
+      {/* ── DEMO DASHBOARD ── */}
+      {appScreen === 'demo' && (
+        <>
+          {showUploadFlow && <UploadFlow />}
+
+          <div className="hc-header bg-white border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-6 py-4">
+              <div className="flex items-center justify-between mb-4">
+                <div className="hc-logo" onClick={() => setAppScreen('home')} style={{ cursor: 'pointer' }}>
+                  <div className="hc-logo-icon">⬡</div>
+                  <span className="hc-logo-wordmark">HeatCert</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setAppScreen('home')}
+                    style={{ fontSize: 12, color: 'var(--hc-text-2)', cursor: 'pointer', background: 'none', border: 'none', fontFamily: "'Space Grotesk', sans-serif", padding: '4px 8px' }}
+                  >
+                    ← Home
+                  </button>
+                  <select
+                    value={selectedFacility}
+                    onChange={(e) => setSelectedFacility(e.target.value)}
+                    className="px-3 py-2 border border-gray-200 rounded text-sm text-gray-700 focus:outline-none focus:border-gray-400"
+                  >
+                    <option value="all">All Facilities</option>
+                    {facilities.map(f => (
+                      <option key={f.id} value={f.id}>{f.name}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="hc-tabs flex gap-1 border-b border-gray-200">
+                <button
+                  onClick={() => setActiveTab('dashboard')}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'dashboard' ? 'hc-tab-active' : 'hc-tab-inactive'}`}
+                >
+                  Dashboard
+                </button>
+                <button
+                  onClick={() => setActiveTab('gpu-workload')}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'gpu-workload' ? 'hc-tab-active' : 'hc-tab-inactive'}`}
+                >
+                  GPU Workload
+                </button>
+                <button
+                  onClick={() => setActiveTab('compliance')}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'compliance' ? 'hc-tab-active' : 'hc-tab-inactive'}`}
+                >
+                  Compliance
+                </button>
+                <button
+                  onClick={() => setActiveTab('historical')}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === 'historical' ? 'hc-tab-active' : 'hc-tab-inactive'}`}
+                >
+                  Historical
+                </button>
+              </div>
             </div>
           </div>
-          <div className="font-mono text-gray-500">
-            v2.1.4 • Last sync: 2m ago
+
+          <div key={activeTab} className="max-w-7xl mx-auto px-6 py-6 hc-tab-content">
+            {activeTab === 'dashboard' && <DashboardView />}
+            {activeTab === 'gpu-workload' && <GPUWorkloadView />}
+            {activeTab === 'compliance' && <ComplianceView />}
+            {activeTab === 'historical' && <HistoricalView />}
           </div>
-        </div>
-      </div>
+
+          <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-gray-400 py-2 px-6 text-xs border-t border-gray-800">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-pulse"></div>
+                  <span>BMS Sync Active</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Server className="w-3 h-3" />
+                  <span>3 Integrations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <GitBranch className="w-3 h-3" />
+                  <span>847 validation rules</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Cpu className="w-3 h-3" />
+                  <span>Zeus: 2,176 GPUs monitored</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Activity className="w-3 h-3" />
+                  <span>Processing: 105K data points/year</span>
+                </div>
+              </div>
+              <div className="font-mono text-gray-500">
+                v2.1.4 • Last sync: 2m ago
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ── EED AUDIT ── */}
+      {appScreen === 'eed-audit' && (
+        <>
+          <div className="hc-header bg-white border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div className="hc-logo" onClick={() => setAppScreen('home')} style={{ cursor: 'pointer' }}>
+                  <div className="hc-logo-icon">⬡</div>
+                  <span className="hc-logo-wordmark">HeatCert</span>
+                </div>
+                <button
+                  onClick={() => setAppScreen('home')}
+                  className="hc-btn-ghost"
+                  style={{ padding: '8px 20px', fontSize: 13 }}
+                >
+                  ← Back to Home
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="hc-tab-content">
+            <EEDAudit />
+          </div>
+        </>
+      )}
     </div>
   );
 };
