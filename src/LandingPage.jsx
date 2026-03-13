@@ -101,8 +101,7 @@ export default function LandingPage({ onDemo, onAudit }) {
             <div className="hc-mission-label">OPERATION</div>
             <div className="hc-mission-title">Validation &amp; reporting</div>
             <ul className="hc-service-items">
-              <li>847 automated validation rules</li>
-              <li>PUE, WUE, ERF, REF calculated in real time</li>
+<li>PUE, WUE, ERF, REF calculated in real time</li>
               <li>Benchmarked against EU thresholds</li>
               <li>Submission-ready output for EU portals + Energieeffizienzregister</li>
             </ul>
