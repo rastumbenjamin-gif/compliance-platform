@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Building2, Database, FileCheck, AlertCircle, CheckCircle, Download, Activity, AlertTriangle, GitBranch, Server, RefreshCw, Zap, BarChart3, Upload, FileText, Wrench, ArrowRight, Cpu, Clock, Users, TrendingDown, Leaf, DollarSign, Gauge } from 'lucide-react';
 import EEDAudit from './EEDAudit';
+import './heatcert.css';
 
 const CompliancePlatform = () => {
   const [appScreen, setAppScreen] = useState('platform');
@@ -1963,20 +1964,25 @@ const CompliancePlatform = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="heatcert-app min-h-screen bg-gray-50">
+      {/* Animated background */}
+      <div className="hc-bg" aria-hidden="true">
+        <div className="hc-bg-orb hc-bg-orb-1" />
+        <div className="hc-bg-orb hc-bg-orb-2" />
+        <div className="hc-bg-orb hc-bg-orb-3" />
+      </div>
+
       {showUploadFlow && <UploadFlow />}
 
-      <div className="bg-white border-b border-gray-200">
+      <div className="hc-header bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-900">Compliance Platform</h1>
+            <div className="hc-logo">
+              <div className="hc-logo-icon">⬡</div>
+              <span className="hc-logo-wordmark">HeatCert</span>
             </div>
             <div className="flex items-center gap-3">
-              <button
-                onClick={() => setAppScreen('audit')}
-                className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition-colors"
-              >
+              <button onClick={() => setAppScreen('audit')} className="hc-audit-btn">
                 <FileCheck className="w-4 h-4" />
                 EED Audit
               </button>
@@ -1993,13 +1999,13 @@ const CompliancePlatform = () => {
             </div>
           </div>
 
-          <div className="flex gap-1 border-b border-gray-200">
+          <div className="hc-tabs flex gap-1 border-b border-gray-200">
             <button
               onClick={() => setActiveTab('dashboard')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'dashboard'
-                  ? 'text-gray-900 border-b-2 border-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'hc-tab-active'
+                  : 'hc-tab-inactive'
               }`}
             >
               Dashboard
@@ -2008,8 +2014,8 @@ const CompliancePlatform = () => {
               onClick={() => setActiveTab('gpu-workload')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'gpu-workload'
-                  ? 'text-gray-900 border-b-2 border-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'hc-tab-active'
+                  : 'hc-tab-inactive'
               }`}
             >
               GPU Workload
@@ -2018,8 +2024,8 @@ const CompliancePlatform = () => {
               onClick={() => setActiveTab('compliance')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'compliance'
-                  ? 'text-gray-900 border-b-2 border-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'hc-tab-active'
+                  : 'hc-tab-inactive'
               }`}
             >
               Compliance
@@ -2028,8 +2034,8 @@ const CompliancePlatform = () => {
               onClick={() => setActiveTab('historical')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'historical'
-                  ? 'text-gray-900 border-b-2 border-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'hc-tab-active'
+                  : 'hc-tab-inactive'
               }`}
             >
               Historical
@@ -2038,7 +2044,7 @@ const CompliancePlatform = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-6">
+      <div key={activeTab} className="max-w-7xl mx-auto px-6 py-6 hc-tab-content">
         {activeTab === 'dashboard' && <DashboardView />}
         {activeTab === 'gpu-workload' && <GPUWorkloadView />}
         {activeTab === 'compliance' && <ComplianceView />}

@@ -1,0 +1,533 @@
+/* ============================================================
+   HEATCERT — Platform Design System
+   Dark navy + teal aesthetic, Space Grotesk + Orbitron
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ─── DESIGN TOKENS ─── */
+:root {
+  --hc-bg:          #04101F;
+  --hc-surface:     #071828;
+  --hc-surface-2:   #0A1E32;
+  --hc-surface-3:   #0D243C;
+  --hc-border:      rgba(2, 160, 185, 0.13);
+  --hc-border-hi:   rgba(2, 195, 154, 0.32);
+  --hc-teal:        #028090;
+  --hc-teal-light:  #02A8BB;
+  --hc-mint:        #02C39A;
+  --hc-mint-dim:    rgba(2, 195, 154, 0.18);
+  --hc-text:        #DCE8F5;
+  --hc-text-2:      #7A98B8;
+  --hc-text-3:      #3D5A75;
+  --hc-green:       #059669;
+  --hc-amber:       #D97706;
+  --hc-red:         #DC2626;
+  --hc-card-shadow: 0 2px 24px rgba(2, 60, 100, 0.35), 0 1px 0 rgba(255,255,255,0.03) inset;
+  --transition:     0.2s ease;
+}
+
+/* ─── KEYFRAMES ─── */
+
+@keyframes hc-orb-float {
+  0%,  100% { transform: translate(0, 0) scale(1);       opacity: 0.75; }
+  33%        { transform: translate(40px, -30px) scale(1.07); opacity: 1;    }
+  66%        { transform: translate(-25px, 20px) scale(0.95); opacity: 0.65; }
+}
+
+@keyframes hc-dot-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(2, 195, 154, 0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(2, 195, 154, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(2, 195, 154, 0);   }
+}
+
+@keyframes hc-logo-breathe {
+  0%,  100% { filter: drop-shadow(0 0 6px  rgba(2, 195, 154, 0.35)); }
+  50%        { filter: drop-shadow(0 0 14px rgba(2, 195, 154, 0.70)); }
+}
+
+@keyframes hc-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes hc-scan-line {
+  0%   { top: -2px;  opacity: 0;   }
+  5%   {             opacity: 0.5; }
+  95%  {             opacity: 0.5; }
+  100% { top: 100%;  opacity: 0;   }
+}
+
+@keyframes hc-orb-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+/* ─── GLOBAL BASE ─── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: var(--hc-bg);
+  color: var(--hc-text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar               { width: 5px; height: 5px; }
+::-webkit-scrollbar-track         { background: var(--hc-bg); }
+::-webkit-scrollbar-thumb         { background: var(--hc-surface-3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover   { background: var(--hc-teal); }
+
+/* ─── ANIMATED BACKGROUND ─── */
+
+.hc-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 55% at 95% 5%,  rgba(2,128,144,0.20) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 5%  90%, rgba(2,195,154,0.11) 0%, transparent 55%),
+    var(--hc-bg);
+}
+
+/* Subtle dot-grid overlay */
+.hc-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(2,160,185,0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 10%, transparent 75%);
+  animation: hc-orb-in 1.5s ease both;
+}
+
+.hc-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: hc-orb-float linear infinite;
+}
+.hc-bg-orb-1 {
+  width: 700px; height: 700px;
+  top: -200px; right: -150px;
+  background: radial-gradient(circle, rgba(2,128,144,0.24) 0%, transparent 65%);
+  animation-duration: 22s;
+}
+.hc-bg-orb-2 {
+  width: 500px; height: 500px;
+  bottom: -60px; left: -100px;
+  background: radial-gradient(circle, rgba(2,195,154,0.14) 0%, transparent 65%);
+  animation-duration: 30s;
+  animation-direction: reverse;
+  animation-delay: -10s;
+}
+.hc-bg-orb-3 {
+  width: 360px; height: 360px;
+  top: 42%; left: 42%;
+  background: radial-gradient(circle, rgba(2,128,144,0.10) 0%, transparent 65%);
+  animation-duration: 38s;
+  animation-delay: -18s;
+}
+
+/* ─── APP WRAPPER ─── */
+
+.heatcert-app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* Staggered fade-in for tab content */
+.hc-tab-content { animation: hc-fade-up 0.28s ease both; }
+
+/* ─── TAILWIND OVERRIDES — Backgrounds ─── */
+
+.heatcert-app                   { background: transparent !important; }
+.heatcert-app .bg-gray-50       { background-color: var(--hc-surface-2) !important; }
+.heatcert-app .bg-white         { background-color: var(--hc-surface)   !important; }
+.heatcert-app .bg-gray-900      { background-color: var(--hc-surface-3) !important; }
+.heatcert-app .bg-gray-800      { background-color: var(--hc-surface-2) !important; }
+.heatcert-app .bg-gray-100      { background-color: var(--hc-surface-2) !important; }
+
+/* ─── TAILWIND OVERRIDES — Borders ─── */
+
+.heatcert-app .border-gray-200,
+.heatcert-app .border-gray-300  { border-color: var(--hc-border)              !important; }
+.heatcert-app .border-gray-100  { border-color: rgba(2,160,185,0.07)          !important; }
+.heatcert-app .border-gray-800  { border-color: var(--hc-border)              !important; }
+.heatcert-app .divide-gray-100 > * + *,
+.heatcert-app .divide-y         > * + * { border-color: rgba(2,160,185,0.07) !important; }
+
+/* ─── TAILWIND OVERRIDES — Text ─── */
+
+.heatcert-app .text-gray-900,
+.heatcert-app .text-gray-800    { color: var(--hc-text)   !important; }
+.heatcert-app .text-gray-700    { color: #A8C4D8          !important; }
+.heatcert-app .text-gray-600,
+.heatcert-app .text-gray-500    { color: var(--hc-text-2) !important; }
+.heatcert-app .text-gray-400    { color: var(--hc-text-3) !important; }
+.heatcert-app .text-gray-300    { color: var(--hc-text-2) !important; }
+.heatcert-app .text-white       { color: var(--hc-text)   !important; }
+
+/* ─── TAILWIND OVERRIDES — Interactions ─── */
+
+.heatcert-app .hover\:bg-gray-50:hover   { background-color: rgba(2,160,185,0.07) !important; }
+.heatcert-app .hover\:bg-gray-800:hover  { background-color: var(--hc-surface-3)  !important; }
+.heatcert-app .hover\:text-gray-700:hover{ color: var(--hc-text)                  !important; }
+.heatcert-app .hover\:border-gray-400:hover,
+.heatcert-app .hover\:border-gray-300:hover { border-color: var(--hc-border-hi)   !important; }
+.heatcert-app .transition-colors         { transition: all var(--transition)       !important; }
+
+/* ─── FORM CONTROLS ─── */
+
+.heatcert-app select {
+  background-color: var(--hc-surface-3) !important;
+  color:            var(--hc-text)      !important;
+  border-color:     var(--hc-border)    !important;
+}
+.heatcert-app select:focus {
+  border-color: var(--hc-teal)                  !important;
+  box-shadow:   0 0 0 2px rgba(2,128,144,0.2)   !important;
+  outline:      none                             !important;
+}
+.heatcert-app option { background-color: var(--hc-surface-3); }
+
+/* Upload drop zone */
+.heatcert-app .border-dashed.border-gray-300 {
+  border-color: var(--hc-border)               !important;
+  background:   rgba(2,128,144,0.04)           !important;
+}
+.heatcert-app .border-dashed.border-gray-300:hover,
+.heatcert-app .hover\:border-gray-400:hover {
+  border-color: var(--hc-teal)                 !important;
+  background:   rgba(2,128,144,0.09)           !important;
+}
+
+/* ─── HEADER / NAV ─── */
+
+.hc-header {
+  background:          rgba(4, 12, 26, 0.93) !important;
+  border-bottom:       1px solid var(--hc-border) !important;
+  backdrop-filter:     blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  position:            relative;
+  overflow:            hidden;
+}
+
+/* Teal gradient accent line at very top */
+.hc-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--hc-teal) 25%,
+    var(--hc-mint) 60%,
+    transparent 100%
+  );
+}
+
+/* Slow scan animation across header bottom */
+.hc-header::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(2,195,154,0.35), transparent);
+  animation: hc-scan-line 7s linear infinite;
+}
+
+/* ─── LOGO ─── */
+
+.hc-logo {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+  cursor:      default;
+  animation:   hc-logo-breathe 4s ease-in-out infinite;
+}
+
+.hc-logo-icon {
+  width:       32px;
+  height:      32px;
+  background:  linear-gradient(135deg, var(--hc-teal), var(--hc-mint));
+  border-radius: 7px;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow:  0 0 14px rgba(2,195,154,0.45);
+  font-size:   15px;
+}
+
+.hc-logo-wordmark {
+  font-family:     'Orbitron', 'Space Grotesk', sans-serif;
+  font-weight:     700;
+  font-size:       16px;
+  letter-spacing:  2px;
+  text-transform:  uppercase;
+  background:      linear-gradient(90deg, #E2EEF8 0%, var(--hc-mint) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── TAB NAVIGATION ─── */
+
+.hc-tabs {
+  display:      flex;
+  gap:          2px;
+  border-bottom: 1px solid var(--hc-border) !important;
+  padding-bottom: 0;
+}
+
+.hc-tab-active {
+  color:         var(--hc-mint)              !important;
+  border-bottom: 2px solid var(--hc-mint)   !important;
+  font-weight:   600;
+  position:      relative;
+}
+.hc-tab-active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 195, 154, 0.06);
+  border-radius: 4px 4px 0 0;
+  pointer-events: none;
+}
+
+.hc-tab-inactive {
+  color:         var(--hc-text-2) !important;
+  border-bottom: 2px solid transparent;
+}
+.hc-tab-inactive:hover {
+  color:            var(--hc-text)           !important;
+  background-color: rgba(2,160,185,0.07)    !important;
+  border-radius:    4px 4px 0 0;
+}
+
+/* ─── CARDS ─── */
+
+/* All cards get a glassy dark treatment */
+.heatcert-app .bg-white {
+  border:     1px solid var(--hc-border) !important;
+  box-shadow: var(--hc-card-shadow)      !important;
+}
+
+/* Rounded cards (metric cards, list panels) */
+.heatcert-app .bg-white.rounded,
+.heatcert-app .bg-white.rounded-lg {
+  transition: border-color var(--transition), box-shadow var(--transition) !important;
+}
+.heatcert-app .bg-white.rounded:hover,
+.heatcert-app .bg-white.rounded-lg:hover {
+  border-color: rgba(2,195,154,0.20)                                     !important;
+  box-shadow:   0 4px 40px rgba(2,80,120,0.4), 0 1px 0 rgba(255,255,255,0.03) inset !important;
+}
+
+/* ─── HERO / GRADIENT CARD ─── */
+
+.heatcert-app .bg-gradient-to-r {
+  background:   linear-gradient(135deg, var(--hc-surface-2) 0%, var(--hc-surface-3) 100%) !important;
+  border:       1px solid var(--hc-border-hi)                                             !important;
+  box-shadow:   0 0 50px rgba(2,128,144,0.18)                                             !important;
+  position:     relative;
+  overflow:     hidden;
+}
+.heatcert-app .bg-gradient-to-r::before {
+  content: '';
+  position: absolute;
+  top: -60%; right: -15%;
+  width: 450px; height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(2,195,154,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Stat numbers inside hero */
+.heatcert-app .bg-gradient-to-r .text-2xl.font-light {
+  color: var(--hc-mint) !important;
+}
+
+/* ─── BUTTONS ─── */
+
+/* Primary dark button → teal gradient */
+.heatcert-app button.bg-gray-900 {
+  background: linear-gradient(135deg, var(--hc-teal) 0%, var(--hc-teal-light) 100%) !important;
+  box-shadow: 0 2px 16px rgba(2,128,144,0.35)                                       !important;
+  border:     none                                                                   !important;
+  transition: box-shadow var(--transition), transform var(--transition)              !important;
+}
+.heatcert-app button.bg-gray-900:hover {
+  box-shadow: 0 4px 28px rgba(2,195,154,0.45) !important;
+  transform:  translateY(-1px)                !important;
+}
+
+/* Inverted white button → mint ghost */
+.heatcert-app button.bg-white.text-gray-900 {
+  background: rgba(2,195,154,0.10)        !important;
+  color:      var(--hc-mint)              !important;
+  border:     1px solid rgba(2,195,154,0.28) !important;
+  box-shadow: none                        !important;
+}
+.heatcert-app button.bg-white.text-gray-900:hover {
+  background: rgba(2,195,154,0.18) !important;
+}
+
+/* Cancel / secondary button */
+.heatcert-app button.border.border-gray-300 {
+  background:   transparent             !important;
+  border-color: var(--hc-border)        !important;
+  color:        var(--hc-text-2)        !important;
+}
+.heatcert-app button.border.border-gray-300:hover {
+  border-color: var(--hc-border-hi)     !important;
+  color:        var(--hc-text)          !important;
+}
+
+/* ─── PROGRESS BARS ─── */
+
+.heatcert-app .bg-gray-200        { background-color: var(--hc-surface-3) !important; }
+.heatcert-app .bg-gray-900.h-2,
+.heatcert-app .bg-gray-700.h-2,
+.heatcert-app .bg-gray-700.h-1\.5 { background-color: var(--hc-teal)     !important; }
+
+/* ─── STATUS INDICATORS ─── */
+
+/* Live pulse dots */
+.heatcert-app .w-1\.5.h-1\.5.rounded-full.bg-gray-400,
+.heatcert-app .w-2.h-2.rounded-full.bg-gray-400 {
+  background-color: var(--hc-mint) !important;
+  animation: hc-dot-pulse 2.2s ease infinite;
+}
+/* Degraded dot */
+.heatcert-app [class*="bg-gray-400"].rounded-full {
+  background-color: var(--hc-mint) !important;
+}
+
+/* Connected badge text */
+.heatcert-app .text-gray-600.flex.items-center.gap-1 {
+  color: var(--hc-mint) !important;
+}
+
+/* ─── TABLES ─── */
+
+.heatcert-app table th {
+  background:     var(--hc-surface-2)  !important;
+  color:          var(--hc-text-2)     !important;
+  border-color:   var(--hc-border)     !important;
+  font-size:      11px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  font-weight:    600;
+}
+.heatcert-app table td         { border-color: var(--hc-border) !important; }
+.heatcert-app table tr:nth-child(even) td { background-color: rgba(2,128,144,0.04) !important; }
+.heatcert-app table tr:hover td { background-color: rgba(2,160,185,0.07) !important; }
+.heatcert-app table .bg-gray-50 { background-color: var(--hc-surface-2) !important; }
+
+/* ─── MONOSPACE DATA ─── */
+
+.heatcert-app .font-mono {
+  font-family: 'DM Mono', 'Fira Mono', monospace !important;
+  color:        var(--hc-mint)                    !important;
+}
+
+/* ─── BADGE / TAG OVERRIDES ─── */
+
+.heatcert-app .bg-gray-100.text-gray-700,
+.heatcert-app .bg-gray-100.text-gray-800 {
+  background: rgba(2,195,154,0.12) !important;
+  color:      var(--hc-mint)       !important;
+  border:     1px solid rgba(2,195,154,0.2) !important;
+}
+.heatcert-app .text-xs.text-gray-500.text-right {
+  color: var(--hc-text-2) !important;
+}
+
+/* ─── CODE BLOCK ─── */
+
+.heatcert-app .bg-gray-900.rounded-lg {
+  background: rgba(2, 10, 22, 0.9) !important;
+  border:     1px solid var(--hc-border) !important;
+}
+.heatcert-app .text-gray-300 { color: #7ECBC8 !important; }
+
+/* ─── MODAL OVERLAY ─── */
+
+.heatcert-app .bg-black.bg-opacity-50 {
+  background-color: rgba(2, 8, 20, 0.88) !important;
+  backdrop-filter:  blur(4px)            !important;
+}
+
+/* ─── BOTTOM STATUS BAR ─── */
+
+.heatcert-app .fixed.bottom-0 {
+  background:      rgba(4, 10, 22, 0.97) !important;
+  border-top:      1px solid var(--hc-border) !important;
+  backdrop-filter: blur(12px)            !important;
+}
+
+/* ─── ALERT / INFO BOXES ─── */
+
+/* Degraded / warning state boxes */
+.heatcert-app .bg-gray-50.border.border-gray-200 {
+  background:   rgba(2,128,144,0.06) !important;
+  border-color: var(--hc-border)     !important;
+}
+
+/* Validation rule boxes */
+.heatcert-app .bg-gray-50.rounded.border {
+  background:   var(--hc-surface-2) !important;
+  border-color: var(--hc-border)    !important;
+}
+
+/* ─── COMPLIANCE CHECK / STATUS ICONS ─── */
+
+.heatcert-app .text-gray-600 svg { color: var(--hc-mint); }
+
+/* ─── EED AUDIT ENTRY BUTTON (override to teal) ─── */
+
+.hc-audit-btn {
+  display:      flex;
+  align-items:  center;
+  gap:          8px;
+  background:   linear-gradient(135deg, var(--hc-teal), var(--hc-teal-light)) !important;
+  color:        white                                                           !important;
+  border:       none                                                            !important;
+  padding:      8px 16px;
+  border-radius: 7px;
+  font-family:  'Space Grotesk', sans-serif;
+  font-size:    13px;
+  font-weight:  600;
+  letter-spacing: 0.3px;
+  cursor:       pointer;
+  box-shadow:   0 2px 14px rgba(2,128,144,0.35);
+  transition:   box-shadow var(--transition), transform var(--transition);
+}
+.hc-audit-btn:hover {
+  box-shadow: 0 4px 22px rgba(2,195,154,0.45);
+  transform:  translateY(-1px);
+}
+
+/* ─── SECTION HEADINGS ─── */
+
+.heatcert-app .text-sm.font-semibold.text-gray-900.uppercase {
+  color:          var(--hc-text-2) !important;
+  letter-spacing: 1.2px;
+}
+
+/* ─── LINE THROUGH (strikethrough original values) ─── */
+.heatcert-app .line-through { color: var(--hc-text-3) !important; }
+
+/* ─── CHECK ICONS (green statuses) ─── */
+.heatcert-app .text-gray-600.w-4.h-4,
+.heatcert-app .text-gray-600.w-5.h-5 { color: var(--hc-mint) !important; }

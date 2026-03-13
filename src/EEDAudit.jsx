@@ -357,12 +357,12 @@ export default function EEDAudit({ onBack }) {
           <div className="eed-nav-brand">
             <span
               onClick={onBack}
-              style={{ fontSize: 12, color: '#64748B', cursor: 'pointer', marginRight: 8 }}
+              style={{ fontSize: 12, color: '#64748B', cursor: 'pointer', marginRight: 16, letterSpacing: '0.3px' }}
             >
-              ← Platform
+              ← HeatCert
             </span>
             <div className="eed-nav-dot" />
-            <span className="eed-nav-name">Circular Data Centers</span>
+            <span className="eed-nav-name">EED Readiness Audit</span>
           </div>
           <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
             {screen === "form" && (
