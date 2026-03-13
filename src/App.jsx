@@ -4,7 +4,6 @@ import EEDAudit from './EEDAudit';
 import './heatcert.css';
 
 const CompliancePlatform = () => {
-  const [appScreen, setAppScreen] = useState('platform');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedFacility, setSelectedFacility] = useState('all');
   const [showTechnicalDetails, setShowTechnicalDetails] = useState(false);
@@ -1959,10 +1958,6 @@ const CompliancePlatform = () => {
     );
   };
 
-  if (appScreen === 'audit') {
-    return <EEDAudit onBack={() => setAppScreen('platform')} />;
-  }
-
   return (
     <div className="heatcert-app min-h-screen bg-gray-50">
       {/* Animated background */}
@@ -1982,10 +1977,6 @@ const CompliancePlatform = () => {
               <span className="hc-logo-wordmark">HeatCert</span>
             </div>
             <div className="flex items-center gap-3">
-              <button onClick={() => setAppScreen('audit')} className="hc-audit-btn">
-                <FileCheck className="w-4 h-4" />
-                EED Audit
-              </button>
               <select
                 value={selectedFacility}
                 onChange={(e) => setSelectedFacility(e.target.value)}
@@ -2040,16 +2031,32 @@ const CompliancePlatform = () => {
             >
               Historical
             </button>
+            <button
+              onClick={() => setActiveTab('eed-audit')}
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
+                activeTab === 'eed-audit'
+                  ? 'hc-tab-active'
+                  : 'hc-tab-inactive'
+              }`}
+            >
+              EED Audit
+            </button>
           </div>
         </div>
       </div>
 
-      <div key={activeTab} className="max-w-7xl mx-auto px-6 py-6 hc-tab-content">
-        {activeTab === 'dashboard' && <DashboardView />}
-        {activeTab === 'gpu-workload' && <GPUWorkloadView />}
-        {activeTab === 'compliance' && <ComplianceView />}
-        {activeTab === 'historical' && <HistoricalView />}
-      </div>
+      {activeTab === 'eed-audit' ? (
+        <div key={activeTab} className="hc-tab-content">
+          <EEDAudit />
+        </div>
+      ) : (
+        <div key={activeTab} className="max-w-7xl mx-auto px-6 py-6 hc-tab-content">
+          {activeTab === 'dashboard' && <DashboardView />}
+          {activeTab === 'gpu-workload' && <GPUWorkloadView />}
+          {activeTab === 'compliance' && <ComplianceView />}
+          {activeTab === 'historical' && <HistoricalView />}
+        </div>
+      )}
 
       <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-gray-400 py-2 px-6 text-xs border-t border-gray-800">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
