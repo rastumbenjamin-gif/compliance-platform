@@ -11,12 +11,16 @@ export default function LandingPage({ onDemo, onAudit }) {
             <div className="hc-logo-icon">⬡</div>
             <span className="hc-logo-wordmark">HeatCert</span>
           </div>
+          <nav className="hc-landing-nav-links">
+            <a href="#how-it-works" className="hc-nav-link">How it works</a>
+            <a href="#platform" className="hc-nav-link">Platform</a>
+          </nav>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <button className="hc-btn-ghost" onClick={onAudit} style={{ padding: '9px 20px', fontSize: 13 }}>
               EED Audit
             </button>
             <button className="hc-btn-primary" onClick={onDemo} style={{ padding: '10px 22px', fontSize: 13 }}>
-              Access Demo →
+              Request Access →
             </button>
           </div>
         </div>
@@ -24,66 +28,80 @@ export default function LandingPage({ onDemo, onAudit }) {
 
       {/* ── HERO ── */}
       <div className="hc-hero">
-        <div className="hc-hero-badge">EU ENERGY EFFICIENCY DIRECTIVE</div>
+        <div className="hc-hero-badge">EU ENERGY EFFICIENCY DIRECTIVE · REGULATION 2024/1364</div>
         <h1 className="hc-hero-title">
-          Your energy data,<br /><em>submission-ready</em>.
+          Data centre EED compliance,<br /><em>automated end-to-end</em>.
         </h1>
         <p className="hc-hero-sub">
-          HeatCert helps data centre operators collect, validate and report EU EED energy KPIs — and identify where efficiency improvements are possible.
+          HeatCert automates the full EU EED reporting workflow for data centre operators — from structured data ingestion and automated validation to submission-ready output. No spreadsheets, no last-minute scrambling.
         </p>
         <div className="hc-hero-actions">
           <button className="hc-btn-primary" onClick={onDemo} style={{ fontSize: 16, padding: '16px 36px' }}>
-            Access Demo →
+            Request Access →
           </button>
           <button className="hc-btn-ghost" onClick={onAudit} style={{ fontSize: 16, padding: '15px 30px' }}>
-            Start EED Audit
+            Free EED Readiness Audit
           </button>
         </div>
         <div className="hc-hero-stat-row">
           <div>
             <div className="hc-hero-stat-num">24</div>
-            <div className="hc-hero-stat-label">KPIs required by EU EED</div>
+            <div className="hc-hero-stat-label">KPIs mandated by EU EED Annex IV</div>
           </div>
           <div>
             <div className="hc-hero-stat-num">15 May</div>
-            <div className="hc-hero-stat-label">Annual reporting deadline</div>
+            <div className="hc-hero-stat-label">EU annual reporting deadline</div>
           </div>
           <div>
             <div className="hc-hero-stat-num">31 Mar</div>
-            <div className="hc-hero-stat-label">Germany (EnEfG) deadline</div>
+            <div className="hc-hero-stat-label">Germany EnEfG deadline</div>
           </div>
+        </div>
+      </div>
+
+      {/* ── COMPLIANCE STRIP ── */}
+      <div className="hc-compliance-strip">
+        <span className="hc-compliance-strip-label">BUILT TO THE REQUIREMENTS OF</span>
+        <div className="hc-compliance-badges">
+          <span className="hc-compliance-badge">EU Regulation 2024/1364</span>
+          <span className="hc-compliance-sep">·</span>
+          <span className="hc-compliance-badge">EED Annex IV (24 KPIs)</span>
+          <span className="hc-compliance-sep">·</span>
+          <span className="hc-compliance-badge">EnEfG 2023 (Germany)</span>
+          <span className="hc-compliance-sep">·</span>
+          <span className="hc-compliance-badge">EU DC Code of Conduct</span>
         </div>
       </div>
 
       <div className="hc-section-divider" />
 
-      {/* ── WHAT WE DO ── */}
-      <div className="hc-landing-section">
-        <div className="hc-section-eyebrow">WHAT WE DO</div>
+      {/* ── HOW IT WORKS ── */}
+      <div className="hc-landing-section" id="how-it-works">
+        <div className="hc-section-eyebrow">HOW IT WORKS</div>
         <h2 className="hc-section-title">From raw meter data to <em>compliant submission</em></h2>
         <p className="hc-section-sub">
-          EU Regulation 2024/1364 requires data centres to report 24 energy KPIs annually. We handle the full workflow — so your team isn't doing it manually in a spreadsheet two days before the deadline.
+          EU Regulation 2024/1364 requires data centres to report 24 energy KPIs annually. HeatCert handles the full workflow — so your team isn't compiling it manually two days before the deadline.
         </p>
-        <div className="hc-3col-grid">
-          <div className="hc-feature-card">
-            <div className="hc-feature-card-tag">DATA HANDLING</div>
-            <div className="hc-feature-card-title">Structured data collection</div>
-            <div className="hc-feature-card-body">
-              Upload energy data from BMS, DCIM, or manual exports. We map it to the 24 EED KPI fields — total energy, IT load, cooling, UPS, renewables, water, waste heat — and flag anything missing before it becomes a problem.
+        <div className="hc-process-steps">
+          <div className="hc-process-step">
+            <div className="hc-process-num">01</div>
+            <div className="hc-process-content">
+              <div className="hc-process-title">Connect your data sources</div>
+              <div className="hc-process-body">Upload energy data from BMS, DCIM, or manual exports. HeatCert ingests, normalises, and maps your inputs to all 24 EED KPI fields — total energy, IT load, cooling, UPS, renewables, water, and waste heat.</div>
             </div>
           </div>
-          <div className="hc-feature-card">
-            <div className="hc-feature-card-tag">VALIDATION</div>
-            <div className="hc-feature-card-title">Automated quality checks</div>
-            <div className="hc-feature-card-body">
-              847 validation rules check your data for consistency, plausibility, and completeness before submission. PUE, WUE, ERF and REF are calculated automatically and benchmarked against EU delegated regulation thresholds.
+          <div className="hc-process-step">
+            <div className="hc-process-num">02</div>
+            <div className="hc-process-content">
+              <div className="hc-process-title">Automated validation against regulation</div>
+              <div className="hc-process-body">847 validation rules check for consistency, plausibility, and completeness. PUE, WUE, ERF and REF are calculated and benchmarked against EU delegated regulation thresholds — surfacing gaps before they cause a submission failure.</div>
             </div>
           </div>
-          <div className="hc-feature-card">
-            <div className="hc-feature-card-tag">REPORTING</div>
-            <div className="hc-feature-card-title">Submission-ready output</div>
-            <div className="hc-feature-card-body">
-              Generates the report structure required for EU member state portals and the German Energieeffizienzregister. Includes a compliance status summary, gap analysis, and audit trail for your records.
+          <div className="hc-process-step">
+            <div className="hc-process-num">03</div>
+            <div className="hc-process-content">
+              <div className="hc-process-title">Generate submission-ready output</div>
+              <div className="hc-process-body">Export the report structure required for EU member state portals and the German Energieeffizienzregister. Includes a compliance status summary, gap analysis, and a full audit trail for your records.</div>
             </div>
           </div>
         </div>
@@ -91,12 +109,12 @@ export default function LandingPage({ onDemo, onAudit }) {
 
       <div className="hc-section-divider" />
 
-      {/* ── OPTIMIZATION ── */}
+      {/* ── BEYOND COMPLIANCE ── */}
       <div className="hc-landing-section">
         <div className="hc-section-eyebrow">BEYOND COMPLIANCE</div>
-        <h2 className="hc-section-title">Compliance data as a starting point for <em>efficiency</em></h2>
+        <h2 className="hc-section-title">Compliance data as a foundation for <em>efficiency</em></h2>
         <p className="hc-section-sub">
-          The data you collect for EED reporting tells you more than just whether you'll pass. HeatCert surfaces where your facility can improve — and by how much.
+          The data you collect for EED reporting tells you more than whether you'll pass. HeatCert surfaces where your facility can improve — and quantifies the gap against regulation thresholds.
         </p>
         <div className="hc-3col-grid">
           <div className="hc-service-card">
@@ -135,7 +153,7 @@ export default function LandingPage({ onDemo, onAudit }) {
       <div className="hc-section-divider" />
 
       {/* ── TWO TOOLS ── */}
-      <div className="hc-landing-section">
+      <div className="hc-landing-section" id="platform">
         <div className="hc-section-eyebrow">THE PLATFORM</div>
         <h2 className="hc-section-title">Two tools. One workflow.</h2>
         <div className="hc-3col-grid" style={{ gridTemplateColumns: '1fr 1fr', maxWidth: 800 }}>
@@ -143,20 +161,20 @@ export default function LandingPage({ onDemo, onAudit }) {
             <div className="hc-feature-card-tag">COMPLIANCE DASHBOARD</div>
             <div className="hc-feature-card-title">Live compliance monitoring</div>
             <div className="hc-feature-card-body" style={{ marginBottom: 20 }}>
-              Upload your energy data and see your PUE, WUE, ERF and REF calculated in real time. Validates against EU thresholds, flags gaps, and shows historical trends across your facility portfolio.
+              Upload your energy data and see PUE, WUE, ERF and REF calculated in real time. Validates against EU thresholds, flags data gaps, and tracks historical trends across your facility portfolio.
             </div>
             <button className="hc-btn-primary" onClick={onDemo} style={{ fontSize: 13, padding: '10px 20px' }}>
-              Access Demo →
+              Request Access →
             </button>
           </div>
           <div className="hc-feature-card" style={{ cursor: 'pointer' }} onClick={onAudit}>
             <div className="hc-feature-card-tag">EED READINESS AUDIT</div>
             <div className="hc-feature-card-title">Know your gaps before the deadline</div>
             <div className="hc-feature-card-body" style={{ marginBottom: 20 }}>
-              A 15-minute self-assessment across all 24 EED KPIs. Scores your data readiness red / amber / green and identifies which metrics you're missing before they cause a submission failure.
+              A structured self-assessment across all 24 EED KPIs. Scores your data readiness red / amber / green and identifies which metrics you're missing before they cause a submission failure.
             </div>
             <button className="hc-btn-ghost" onClick={onAudit} style={{ fontSize: 13, padding: '9px 20px' }}>
-              Start Audit →
+              Start Free Audit →
             </button>
           </div>
         </div>
@@ -164,27 +182,33 @@ export default function LandingPage({ onDemo, onAudit }) {
 
       {/* ── CTA ── */}
       <div className="hc-landing-cta">
+        <div className="hc-landing-cta-eyebrow">GET STARTED</div>
         <div className="hc-landing-cta-title">
-          Ready for the <em>next deadline</em>?
+          Preparing for the <em>next deadline</em>?
         </div>
         <p className="hc-landing-cta-sub">
-          Start with the EED Readiness Audit — free, no commitment, 15 minutes — or go straight into the platform demo.
+          Start with the free EED Readiness Audit to understand your data gaps — or request access to the full compliance platform.
         </p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button className="hc-btn-primary" onClick={onDemo} style={{ fontSize: 16, padding: '16px 36px' }}>
-            Access Demo →
+            Request Access →
           </button>
           <button className="hc-btn-ghost" onClick={onAudit} style={{ fontSize: 16, padding: '15px 30px' }}>
-            Start EED Audit
+            Start Free Audit
           </button>
         </div>
       </div>
 
       {/* ── FOOTER ── */}
       <div className="hc-landing-footer">
-        <div className="hc-logo" style={{ animation: 'none', filter: 'none', opacity: 0.6 }}>
-          <div className="hc-logo-icon" style={{ width: 22, height: 22, fontSize: 11 }}>⬡</div>
-          <span className="hc-logo-wordmark" style={{ fontSize: 12, letterSpacing: 1.5 }}>HeatCert</span>
+        <div className="hc-landing-footer-left">
+          <div className="hc-logo" style={{ animation: 'none', filter: 'none', opacity: 0.7 }}>
+            <div className="hc-logo-icon" style={{ width: 22, height: 22, fontSize: 11 }}>⬡</div>
+            <span className="hc-logo-wordmark" style={{ fontSize: 12, letterSpacing: 1.5 }}>HeatCert</span>
+          </div>
+          <div className="hc-landing-footer-studio">
+            A <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-respire-link">Respire</a> Venture Studio company
+          </div>
         </div>
         <div className="hc-landing-footer-copy">
           Built on EU Regulation 2024/1364 · EED Data Centre Annex IV
