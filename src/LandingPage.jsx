@@ -210,7 +210,7 @@ export default function LandingPage({ onDemo, onAudit }) {
             <div className="hc-studio-eyebrow">VENTURE STUDIO</div>
             <div className="hc-studio-heading">Built by Respire</div>
             <p className="hc-studio-body">
-              HeatCert is a product of <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-link">Respire</a> — a venture studio focused on accelerating the climate transition. Respire builds purpose-driven software ventures that help operators, developers, and asset managers meet the demands of a decarbonising economy.
+              HeatCert is a product of <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-link">Respire</a> — a venture studio focused on accelerating the climate transition. Respire builds purpose-driven software and hardware ventures that help operators, developers, and asset managers meet the demands of a decarbonising economy.
             </p>
             <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-cta">
               Visit Respire →
