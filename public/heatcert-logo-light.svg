@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="220" height="48">
+  <defs>
+    <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#028090"/>
+      <stop offset="100%" stop-color="#02C39A"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- transparent background -->
+  <rect width="220" height="48" fill="transparent"/>
+
+  <!-- icon box -->
+  <rect x="10" y="8" width="32" height="32" rx="7" fill="url(#icon-grad)" filter="url(#glow)"/>
+
+  <!-- hexagon -->
+  <text x="26" y="29.5" text-anchor="middle" font-size="16" fill="white" font-family="Arial, sans-serif">⬡</text>
+
+  <!-- wordmark (dark for light backgrounds) -->
+  <text x="54" y="31" font-family="'Orbitron', 'Arial Black', sans-serif" font-weight="700" font-size="16" letter-spacing="2" fill="#04101F">HEATCERT</text>
+</svg>

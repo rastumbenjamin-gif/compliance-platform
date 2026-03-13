@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#028090"/>
+      <stop offset="100%" stop-color="#02C39A"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- icon box -->
+  <rect x="2" y="2" width="44" height="44" rx="10" fill="url(#icon-grad)" filter="url(#glow)"/>
+
+  <!-- hexagon -->
+  <text x="24" y="33" text-anchor="middle" font-size="22" fill="white" font-family="Arial, sans-serif">⬡</text>
+</svg>
