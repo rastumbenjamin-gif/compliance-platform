@@ -1083,6 +1083,13 @@ body {
 .hc-landing-cta-title em { color: var(--hc-mint); font-style: normal; }
 .hc-landing-cta-sub { font-size: 16px; color: var(--hc-text-2); margin-bottom: 40px; line-height: 1.6; }
 
+/* Nav studio tag */
+.hc-nav-studio-tag {
+  font-size: 11px; font-weight: 600; color: var(--hc-text-3);
+  letter-spacing: 0.5px; padding: 3px 9px;
+  border: 1px solid var(--hc-border); border-radius: 4px;
+}
+
 /* Nav links */
 .hc-landing-nav-links { display: flex; gap: 28px; align-items: center; }
 .hc-nav-link {
@@ -1134,6 +1141,49 @@ body {
   font-size: 11px; font-weight: 700; letter-spacing: 3px;
   color: var(--hc-teal-light); margin-bottom: 16px;
 }
+
+/* Respire studio section */
+.hc-studio-section {
+  background: var(--hc-surface-2);
+  border-top: 1px solid var(--hc-border); border-bottom: 1px solid var(--hc-border);
+}
+.hc-studio-inner {
+  max-width: 1100px; margin: 0 auto; padding: 64px 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+}
+.hc-studio-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  color: var(--hc-teal-light); margin-bottom: 14px;
+}
+.hc-studio-heading {
+  font-size: 28px; font-weight: 700; color: var(--hc-text); margin-bottom: 16px;
+}
+.hc-studio-body {
+  font-size: 15px; color: var(--hc-text-2); line-height: 1.75; margin: 0 0 28px;
+}
+.hc-studio-link {
+  color: var(--hc-teal-light); text-decoration: none; font-weight: 600;
+  transition: color var(--transition);
+}
+.hc-studio-link:hover { color: var(--hc-mint); }
+.hc-studio-cta {
+  display: inline-block; font-size: 14px; font-weight: 700;
+  color: var(--hc-mint); text-decoration: none;
+  border-bottom: 1px solid rgba(2,195,154,0.3);
+  padding-bottom: 2px; transition: border-color var(--transition), color var(--transition);
+}
+.hc-studio-cta:hover { border-color: var(--hc-mint); color: white; }
+.hc-studio-right { display: flex; flex-direction: column; gap: 0; }
+.hc-studio-fact {
+  padding: 20px 0; border-bottom: 1px solid var(--hc-border);
+}
+.hc-studio-fact:first-child { padding-top: 0; }
+.hc-studio-fact:last-child { border-bottom: none; padding-bottom: 0; }
+.hc-studio-fact-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  color: var(--hc-text-3); margin-bottom: 6px;
+}
+.hc-studio-fact-value { font-size: 14px; color: var(--hc-text-2); line-height: 1.5; }
 
 /* Footer */
 .hc-landing-footer {

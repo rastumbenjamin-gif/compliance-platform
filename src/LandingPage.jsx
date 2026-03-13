@@ -7,13 +7,17 @@ export default function LandingPage({ onDemo, onAudit }) {
       {/* ── NAV ── */}
       <div className="hc-header bg-white border-b border-gray-200" style={{ position: 'sticky', top: 0, zIndex: 10 }}>
         <div className="hc-landing-nav">
-          <div className="hc-logo">
-            <div className="hc-logo-icon">⬡</div>
-            <span className="hc-logo-wordmark">HeatCert</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <div className="hc-logo">
+              <div className="hc-logo-icon">⬡</div>
+              <span className="hc-logo-wordmark">HeatCert</span>
+            </div>
+            <span className="hc-nav-studio-tag">by Respire</span>
           </div>
           <nav className="hc-landing-nav-links">
             <a href="#how-it-works" className="hc-nav-link">How it works</a>
             <a href="#platform" className="hc-nav-link">Platform</a>
+            <a href="#about" className="hc-nav-link">About</a>
           </nav>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <button className="hc-btn-ghost" onClick={onAudit} style={{ padding: '9px 20px', fontSize: 13 }}>
@@ -196,6 +200,36 @@ export default function LandingPage({ onDemo, onAudit }) {
           <button className="hc-btn-ghost" onClick={onAudit} style={{ fontSize: 16, padding: '15px 30px' }}>
             Start Free Audit
           </button>
+        </div>
+      </div>
+
+      {/* ── RESPIRE STUDIO ── */}
+      <div className="hc-studio-section" id="about">
+        <div className="hc-studio-inner">
+          <div className="hc-studio-left">
+            <div className="hc-studio-eyebrow">VENTURE STUDIO</div>
+            <div className="hc-studio-heading">Built by Respire</div>
+            <p className="hc-studio-body">
+              HeatCert is a product of <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-link">Respire</a> — a venture studio building software at the intersection of climate compliance and infrastructure efficiency. We develop focused tools for operators, developers, and asset managers navigating the transition to sustainable infrastructure.
+            </p>
+            <a href="https://www.respire.icu/" target="_blank" rel="noopener noreferrer" className="hc-studio-cta">
+              Visit Respire →
+            </a>
+          </div>
+          <div className="hc-studio-right">
+            <div className="hc-studio-fact">
+              <div className="hc-studio-fact-label">FOCUS</div>
+              <div className="hc-studio-fact-value">Climate compliance &amp; infrastructure efficiency</div>
+            </div>
+            <div className="hc-studio-fact">
+              <div className="hc-studio-fact-label">APPROACH</div>
+              <div className="hc-studio-fact-value">Purpose-built ventures for specific regulatory problems</div>
+            </div>
+            <div className="hc-studio-fact">
+              <div className="hc-studio-fact-label">HEATCERT STATUS</div>
+              <div className="hc-studio-fact-value">Currently onboarding pilot partners across Europe</div>
+            </div>
+          </div>
         </div>
       </div>
 
