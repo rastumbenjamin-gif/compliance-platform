@@ -1053,6 +1053,26 @@ body {
 .hc-feature-card-title { font-size: 18px; font-weight: 700; color: var(--hc-text); margin-bottom: 12px; }
 .hc-feature-card-body { font-size: 13px; color: var(--hc-text-2); line-height: 1.65; }
 
+/* Mission cards */
+.hc-mission-card {
+  background: var(--hc-surface); border: 1px solid var(--hc-border);
+  border-radius: 12px; padding: 28px; box-shadow: var(--hc-card-shadow);
+  transition: border-color var(--transition);
+}
+.hc-mission-card:hover { border-color: rgba(2,195,154,0.25); }
+.hc-mission-num {
+  font-size: 11px; font-weight: 700; font-family: 'DM Mono', monospace;
+  color: var(--hc-teal-light); letter-spacing: 1px; margin-bottom: 12px;
+}
+.hc-mission-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  color: var(--hc-mint); margin-bottom: 8px;
+}
+.hc-mission-title {
+  font-size: 18px; font-weight: 700; color: var(--hc-text);
+  margin-bottom: 20px; line-height: 1.2;
+}
+
 /* Service cards */
 .hc-service-card {
   background: var(--hc-surface); border: 1px solid var(--hc-border);
